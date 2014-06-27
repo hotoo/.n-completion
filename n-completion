@@ -1,0 +1,12 @@
+CMD="stable latest rm ls next prev use bin which list as"
+CMDARRAY=(stable latest rm ls next prev use bin which list as)
+
+# zsh
+type compctl > /dev/null 2>&1 && compctl -k CMDARRAY n
+
+# bash
+_n_completion() {
+  local word=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=($(compgen -W "$CMD" -- "${word}"))
+}
+type complete > /dev/null 2>&1 && complete -F _n_completion n
